@@ -1,0 +1,6 @@
+SELECT film.title
+FROM film
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON inventory.inventory_id = rental.inventory_id
+WHERE rental.return_date BETWEEN '2005-05-29' AND '2005-05-30'
+LIMIT 5;

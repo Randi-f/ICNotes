@@ -1,0 +1,4 @@
+SELECT store_id
+FROM customer
+GROUP BY store_id
+HAVING COUNT(*) > 300;

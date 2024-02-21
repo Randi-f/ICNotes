@@ -1,0 +1,3 @@
+SELECT COUNT(*) AS count_films_not_in_inventory
+FROM film
+WHERE film_id NOT IN (SELECT film_id FROM inventory);

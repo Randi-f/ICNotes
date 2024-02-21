@@ -1,0 +1,12 @@
+WITH TransactionSummary AS (
+SELECT staff_id, 
+       COUNT(*) AS num_transactions,
+       SUM(amount) AS total_transaction_value
+FROM payment
+GROUP BY staff_id
+ORDER BY num_transactions DESC, total_transaction_value DESC
+)
+SELECT
+    MAX(CASE WHEN num_transactions = (SELECT MAX(num_transactions) FROM TransactionSummary) THEN staff_id END) AS staff_id_max_transactions,
+    MAX(CASE WHEN total_transaction_value = (SELECT MAX(total_transaction_value) FROM TransactionSummary) THEN staff_id END) AS staff_id_max_value
+FROM TransactionSummary;

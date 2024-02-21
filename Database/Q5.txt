@@ -1,0 +1,6 @@
+SELECT 
+    COUNT(*) AS num_films
+FROM 
+    film
+WHERE 
+    rental_rate > (SELECT AVG(rental_rate) FROM film);
