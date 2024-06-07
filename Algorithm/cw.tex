@@ -1,0 +1,106 @@
+% Compile this file by running 
+%   pdflatex cw
+% and open the generated pdf to see the result.
+
+% Start of document source.
+\documentclass{article}
+
+% Add further packages here as required.
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+
+% Start of document preamble.
+\title{
+  70087 Algorithms \\
+  Assessed Coursework
+}
+
+\author{Shihan Fu}
+
+% Start of main content.
+\begin{document}
+
+% Add preformatted heading.
+\maketitle
+
+% Starts a numbered list.
+\begin{enumerate}
+  % An item in the numbered list.
+  \item Answer to Question 1.
+    \begin{algorithmic}[1]
+      \Statex
+      \Procedure{COUNT\_SORTED}{$A ,B$}
+        \State $i \gets 0$
+        \State $j \gets 0$
+        \State $count \gets 0$
+        \While {$i \textless A.length$ and $j \textless B.length$}
+          \If {$A[i] \textgreater  B[j]$}
+            \State $j \gets j+1$
+            \State $count \gets count + A.length - i$
+          \Else
+            \State $i \gets i+1$
+          \EndIf
+        \EndWhile
+        \State \Return count
+      \EndProcedure
+    \end{algorithmic}
+  % Second item in main list.
+  \item Answer to Question 2.
+  \begin{algorithmic}[1]
+    \Statex
+    \Procedure{COUNT\_PAIRS}{$C$}
+      \State \Return MERGESORT(C, 0, C.length-1)
+    \EndProcedure
+    \Procedure{MERGESORT}{$C, low, high$}
+      \State $count \gets 0$
+      \State $mid \gets (low+high)/2$
+      \If {$low  \textless  high$}
+        \State $count \gets count + MERGESORT(C, low, mid)$
+        \State $count \gets count + MERGESORT(C, mid + 1, high)$
+        \State $count \gets count + MERGE(C, low, mid, high)$
+      \EndIf
+      \State \Return count
+    \EndProcedure
+    \Procedure{MERGE}{$C, low, mid, high$}
+      \State $count \gets 0$
+      \For {$i \gets 0$ to $high - low + 1$}
+        \State $tmp[i] \gets 0$
+      \EndFor
+      \State $i \gets low$
+      \State $j \gets mid + 1$
+      \State $k \gets 0$
+      \While{$ i  \leq  mid$ and $j  \leq  high$}
+        \If{$C[i] \leq C[j]$}
+          \State $tmp[k] \gets C[i]$
+          \State $k \gets k + 1$
+          \State $i \gets i + 1$
+        \Else
+          \State $count \gets count + (mid - i + 1)$
+          \State $tmp[k] \gets C[j]$
+          \State $k \gets k + 1$
+          \State $j \gets j + 1$
+        \EndIf
+      \EndWhile
+      \While{$i \leq mid$}
+        \State $tmp[k] \gets C[i]$
+        \State $k \gets k + 1$
+        \State $i \gets i + 1$
+      \EndWhile
+      \While{$j \leq high$}
+        \State $tmp[k] \gets C[j]$
+        \State $k \gets k + 1$
+        \State $j \gets j + 1$
+      \EndWhile
+      \For {$n \gets 1$ to $tmp.length$}
+        \State $C[n + low] \gets tmp[n]$
+      \EndFor
+      \State \Return count
+    \EndProcedure
+  \end{algorithmic}
+
+% End of main list.
+\end{enumerate}
+
+\end{document}
+

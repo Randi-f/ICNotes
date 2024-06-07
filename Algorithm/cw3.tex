@@ -1,0 +1,94 @@
+% Compile this file by running 
+%   pdflatex cw
+% and open the generated pdf to see the result.
+
+% Start of document source.
+\documentclass{article}
+
+% Add further packages here as required.
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+
+% Start of document preamble.
+\title{
+  70087 Algorithms \\
+  Assessed Coursework
+}
+
+\author{Shihan Fu}
+
+% Start of main content.
+\begin{document}
+
+% Add preformatted heading.
+\maketitle
+
+% Starts a numbered list.
+\begin{enumerate}
+  % An item in the numbered list.
+  \item Answer to Question 1.
+    \begin{algorithmic}[1]
+      \Statex
+      \Procedure{COUNT\_SORTED}{$A ,B$}
+        \State $N \gets A.length$
+        \For {$i \gets 1$ to $N$}
+          \State $dp[i] \gets 1$
+        \EndFor
+        \For {$i \gets 1$ to $N$}
+          \For {$j \gets i-1$ to $0$}
+            \If {$A[i]  \textgreater  A[j]$}
+              \State $sp[i] \gets Math.max(dp[i],dp[j]+1)$
+            \EndIf
+          \EndFor
+        \EndFor
+        \State \Return MAX(dp[N])
+      \EndProcedure
+    \end{algorithmic}
+  % Second item in main list.
+  \item Answer to Question 2.
+  If my procedure could not use dynamic programming, the time complexity will increase greatly because each subproblems will need to be computed recursively. This may result in an exponential result.
+  
+  For the worst case, to get dp[N],  we need to compute and compare every dp[i] where i between 1 to N.
+  
+  In this case, T(N) = $\Theta$(1)  if N = 0
+  
+  T(N) = T(N-1) + T(N-2) + ... + T(0) + Nc + d    if N $\textgreater$ 1
+  
+  So, T(N-1) = T(N-2) + ... + T(0) + (N-1)c + d   if N $\textgreater$ 1
+  
+  In this way, we can get
+  
+  T(N) = 2T(N-1) + c    if N $\textgreater$ 1
+  
+  T(N) = 4T(N-2) + 3c   if N $\textgreater$ 2
+  
+  ...
+  
+  T(N) = $2^iT(N-i)$ + $(2^i -1)c$  if N $\textgreater$ i where 1 $\leq$ $i < N$
+  
+  For i = N - 1, we have T(N) = $2^{N-1}T(1)$ + $(2^{N-1} -1)c$
+  
+  T(1) = T(0) + c + d
+  
+  So T(N) = $2^{N-1}T(0)$ + $2^{N-1}c$ + $(2^{N-1}-1)c$ + $2^{N-1}d$
+  
+  therefore, T(N) = $(2^N)c$ + $2^{N-1}T(0)$ + $2^{N-1}d$ -c = $\Theta$$(2^N)$
+  
+  For the best case, we assume that the array is in an decreasing order. 
+  The result of each comparision will be false and each dp[i] will be 1.
+  
+  In this case, T(N) = $\Theta$(1)  if N = 0
+  
+  T(N) = Nc     if N $\textgreater$ 1
+  
+  Therefore, T(N) = $\Theta$(N)
+  
+  Hence, in total, the upper bound is $O(2^N)$, and the lower bound is $\Omega(N)$.
+
+
+% End of main list.
+\end{enumerate}
+
+\end{document}
+
