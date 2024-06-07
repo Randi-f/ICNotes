@@ -1,0 +1,30 @@
+ country | organization |  type  
+---------+--------------+--------
+ R       | ARF          | member
+ MNG     | ARF          | member
+ PK      | ARF          | member
+ IND     | ARF          | member
+ BD      | ARF          | member
+ MYA     | ARF          | member
+ CL      | ARF          | member
+ CN      | ARF          | member
+ KP      | ARF          | member
+ ROK     | ARF          | member
+ J       | ARF          | member
+ RP      | ARF          | member
+ VN      | ARF          | member
+ K       | ARF          | member
+ LAO     | ARF          | member
+ THA     | ARF          | member
+ MAL     | ARF          | member
+ BRU     | ARF          | member
+ SGP     | ARF          | member
+ RI      | ARF          | member
+ TL      | ARF          | member
+ PNG     | ARF          | member
+ AUS     | ARF          | member
+ NZ      | ARF          | member
+ CDN     | ARF          | member
+ USA     | ARF          | member
+(26 rows)
+

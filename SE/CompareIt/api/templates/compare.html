@@ -1,0 +1,265 @@
+<!--
+ * @Description: 
+ * @Version: 
+ * @Author: fsh
+ * @Date: 2023-04-13 18:43:45
+
+ * @LastEditTime: 2023-12-03 10:56:06
+
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+
+
+<title>CompareIt</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="{{ url_for('static',filename='welcome.css') }}">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+<style>
+table{width:600px; 
+border-collapse:collapse; 
+text-align:center;
+}
+td,th{border:1px solid #ccc}
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+#myInput {
+    background-image: url('https://static.runoob.com/images/mix/searchicon.png'); /* 搜索按钮 */
+    background-position: 10px 12px; /* 定位搜索按钮 */
+    background-repeat: no-repeat; /* 不重复图片 */
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px; 
+}
+ 
+#myTable {
+    border-collapse: collapse; 
+    width: 100%; 
+    border: 1px solid #ddd;
+    font-size: 18px; 
+}
+ 
+#myTable th, #myTable td {
+    text-align: left;
+    padding: 12px;
+}
+ 
+#myTable tr {
+    /* 表格添加边框 */
+    border-bottom: 1px solid #ddd; 
+}
+ 
+#myTable tr.header, #myTable tr:hover {
+    /* 表头及鼠标移动过 tr 时添加背景 */
+    background-color: #f1f1f1;
+}
+</style>
+
+<!--引入js文件-->
+<!-- <script src="__JS__/bootstrap.js"></script>
+<script src="__JS__/jquery-3.6.3.min.js"></script> -->
+</head>
+<body>
+<select id="columnName">
+</select>
+
+<script>
+    
+</script>
+
+
+
+<div class="container">
+    <div class="info-wrapper">
+        <!-- <h1>Compare<span style="color: crimson;">It</span></h1> -->
+        <div class="header">Compare It</div>
+        <div class="form-wrapper">
+            <button onclick="window.location.href='/profile'"> profile </button>
+            <form action="/keywordsubmit" method="post">               
+                <!-- keyword:<input type="text" name="keyword" id = "keyword" placeholder="keyword" class="input-item"> -->
+                keyword:<input type="text" name="keyword" id = "keyword" placeholder="keyword" class="fa fa-search">
+                <i class="fa fa-search"></i>
+                <button type="submit">
+                    <img src="https://static.runoob.com/images/mix/searchicon.png" width="12" alt="图片">
+                    <!-- <i class="fa fa-search"></i> -->
+                </button>
+                <!-- <input type="submit" class="myInput" value="Submit"> -->
+            </form>
+
+        </div>
+        <div class="table-container">
+            <table border="1">
+                <tr>
+                    <th>Item</th>
+                    <th>Link</th>
+                    <th>Price</th>
+                    <th>Manufacturer</th>
+                    <th>Market</th>
+                </tr>
+                
+                <tr>
+                    <td>{{ result1['title'] }}</td>
+                    <td>{{ result1['link'] }}</td>
+                    <td>{{ result1['price'] }}</td>
+                    <td>{{ result1['manufacturer'] }}</td>
+                    <td>JD</td>
+                </tr>
+                <tr>
+                    <td>{{ result2[0] }}</td>
+                    <td>{{ result2[5] }}</td>
+                    <td>{{ result2[2] }}</td>
+                    <td>{{ result2[1] }}</td>
+                    <td>WPH</td>
+                </tr>
+
+                
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- <input type="text" id="myInput" onkeyup="searchByKeywords()" placeholder="search info..."> -->
+<!-- <button type="button" onclick="searchInfo()"><i class="fa fa-search"></i></button> -->
+<div id="data"></div>
+<!-- <form class="example" action="/action_page.php" style="margin:auto;max-width:300px"> -->
+  <!-- <input type="text" placeholder="Search.." name="myInput" id="myInput"> -->
+  
+<!-- </form> -->
+<script>
+    
+    function searchByKeywords(){
+        
+    // 声明变量
+    var columnName=document.getElementById("columnName").selectedIndex;
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    th=table.getElementsByTagName("th");
+    tr = table.getElementsByTagName("tr");
+ 
+
+    // 循环表格每一行，查找匹配项
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[columnName];
+        if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } 
+            else {
+                tr[i].style.display = "none";
+            }
+        } 
+    }
+
+    }
+</script>
+<script>
+
+$.ajax({
+            type:'post',
+		    url: "{:url('/compare')}",
+		    data: {'none':"none"},
+            success: function(d) {
+                var json = JSON.parse(d);
+                var table=document.createElement("table");
+                table.id="myTable";
+                //创建thead，并追加到table中
+                var thead=document.createElement("thead");
+                table.appendChild(thead);
+                //创建tr,并追加到thead
+                var tr=document.createElement("tr");
+                thead.appendChild(tr);
+                //json数组中第1个人的每个属性
+                var selectTab=document.getElementById("columnName");
+                selectTab.options.length = 0;
+                var count=0;
+                for(var key in json[0]){
+                    selectTab.options.add(new Option(key, count));
+                    count++;
+                    //创建th
+                    var th=document.createElement("th");
+                    //设置th的内容为key
+                    th.innerHTML=key;
+                    //将th追加到tr中
+                    tr.appendChild(th);
+                }
+                //创建tbody元素
+                var tbody=document.createElement("tbody");
+                //将tbody追加到table中
+                table.appendChild(tbody);
+                //遍历json中所有员工
+                for(var i=0;i<json.length;i++){
+                    //创建tr
+                    var tr=document.createElement("tr");
+                    //遍历当前员工的每个属性
+                    for(var key in json[i]){
+                        //创建td
+                        var td=
+                        document.createElement("td");
+                        //设置td的内容为当前员工的当前属性值
+                        td.innerHTML=json[i][key];
+                        //将td追加到tr
+                        tr.appendChild(td);
+                    }//(遍历结束)
+                    //将tr追加到tbody中
+                    tbody.appendChild(tr);
+                }
+                //将table添加到id为data的div下
+                document.getElementById("data").appendChild(table);
+			},
+            error: function(data){
+                alert("error occurs! Please contact technical staffs: lucifer_1412@bupt.edu.cn!");
+            }
+        });
+
+
+</script>
+</body>
+</html>

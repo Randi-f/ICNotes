@@ -1,0 +1,56 @@
+<!--
+ * @Author: shihan
+ * @Date: 2023-11-30 17:22:35
+ * @version: 1.0
+ * @description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='welcome.css') }}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="container">
+        <div class="info-wrapper">
+            <div class="header">User Profile</div>
+            <div class="form-wrapper">
+                <section id="user-info">
+                    <div id="user-details">
+                        <h2 id="username">{{ user.username }}</h2>
+                        <div class="info-box">
+                            <p class="label">Email:</p>
+                            <p class="content">{{ user.email }}</p>
+                        </div>
+                        <div class="info-box">
+                            <p class="label">Gender:</p>
+                            <p class="content">{{ user.gender }}</p>
+                        </div>
+                        <div class="info-box">
+                            <p class="label">Date of Birth:</p>
+                            <p class="content">{{ user.dob }}</p>
+                        </div>
+                        <div class="info-box">
+                            <p class="label">Postcode:</p>
+                            <p class="content">{{ user.postcode }}</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1>User Profile</h1>
+    </header>
+    
+    <footer>
+        <p>&copy; 2023 Your Website</p>
+    </footer>
+</body>
+</html>
+

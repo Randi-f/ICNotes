@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='welcome.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<script type="text/javascript">  
+    function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('myModal').style.display = 'block';
+    }
+
+function hideModal() {
+    document.getElementById('myModal').style.display = 'none';
+    }
+
+    function check2pwd(event) {  
+        var nameRegex = /^[A-Za-z]+$/;
+        var dateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+        var emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+        var postalcodeRegex = /^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$/;
+
+        // ***************************** FIRST NAME  *****************************
+        if(first_name.value==""){
+            showModal("First name is empty, please enter your first name.");
+            event.preventDefault();
+            return
+        } else if (!nameRegex.test(first_name.value)) {
+        showModal("First name should contain alphabetic characters only.");
+        event.preventDefault();
+        return;
+        }
+
+        // ***************************** LAST NAME  *****************************
+        if(last_name.value==""){
+            showModal("Last name is empty, please enter your last name.");
+            event.preventDefault();
+            return
+        } else if (!nameRegex.test(last_name.value)) {
+        showModal("Last name should contain alphabetic characters only.");
+        event.preventDefault();
+        return;
+        }
+
+        // ***************************** GENDER  *****************************
+        if(gender.value==""){
+            showModal("Gender is empty, please enter your gender.");
+            event.preventDefault();
+            return
+        } else if(!(gender.value.toLowerCase()=="female" || gender.value.toLowerCase()=="male" || gender.value.toLowerCase()=="non-binary")){
+        showModal("Please enter female, male, or non-binary");
+        event.preventDefault();
+        return
+        } else if (!nameRegex.test(gender.value)) {
+        showModal("Alphabetic characters only. Please enter female, male, or non-binary");
+        event.preventDefault();
+        return;
+        }
+
+        // ***************************** DOB  *****************************
+        if(dob.value == ""){
+            showModal("Date of birth is empty, please enter your date of birth.");
+            event.preventDefault();
+            return;
+        } else if (!dateRegex.test(dob.value)){
+            showModal("Incorrect dob format");
+            event.preventDefault();
+            return;
+        }
+
+        // ***************************** EMAIL *****************************
+        if(email.value == ""){
+            showModal("Email is empty, please enter your email.");
+            event.preventDefault();
+            return;
+        } else if (!emailRegex.test(email.value)) {
+			showModal("Wrong email format!");
+            event.preventDefault();
+			return;
+		} 
+
+        // ***************************** POSTAL CODE *****************************
+        if(postcode.value == ""){
+            showModal("Postal code is empty, please enter your postal code.");
+            event.preventDefault();
+            return;
+        } else if (!postalcodeRegex.test(postcode.value)){
+            showModal("Incorrect postal code format");
+            event.preventDefault();
+            return;
+        }
+
+        // ***************************** PASSWORD *****************************
+        if(password.value==""){
+            showModal("Password is empty, please enter your password.");
+            event.preventDefault();
+            return
+        }
+
+        if(password.value.length > 16 || password.value.length < 6) {
+			showModal("Password length should be 6-16 characters");
+            event.preventDefault();
+			return;
+		}
+
+        // ***************************** RE-ENTER PASSWORD *****************************
+        if(password.value != passwordnot.value) {  
+            showModal("Re-enter password please, there is a password mismatch!")
+            password.value = "";  
+            passwordnot.value = "";
+            event.preventDefault();
+            return
+        }
+    }
+
+
+</script>
+<body>
+    <div class="container">
+        <div class="login-wrapper2">
+            <div class="header">Create Account</div>
+            <div class="form-wrapper">
+                <form method="POST" action="/register">
+                    First Name:<input type="text" name="first_name" id = "first_name" placeholder="first name" class="input-item">
+                    Last Name: <input type="text" name="last_name" id = "last_name" placeholder="last name" class="input-item">
+                    Gender (male/female/non-binary):<input type="text" name="gender" id = "gender" placeholder="gender" class="input-item">
+                    Date of Birth (DD/MM/YYYY):<input type="text" name="dob" id = "dob" placeholder="date of birth" class="input-item">
+                    Email Address:<input type="text" name="email" id = "email" placeholder="email address" class="input-item">
+                    Postal Code (UK Only):<input type="text" id = "postcode" name="postcode" placeholder="postal code" class="input-item">
+                    Password:<input type="password" id = "password" name="password" placeholder="password" class="input-item">
+                    Re-enter Password:<input type="password" id = "passwordnot" name="passwordnot" placeholder="re-enter password" class="input-item">
+                    <div class="btn-container">
+                        <input type="submit" name = "createUser" class="btn" value = "Create Account" onclick="check2pwd(event)"></div> 
+                    </div>
+                </form>
+            </div>
+            
+            <div id="myModal" class="modal">
+                <p id="modalMessage">Modal message goes here</p>
+                <span class="close" onclick="hideModal()">&times;</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Result</title>
+    <link rel="stylesheet" type="text/css" href="../static/welcome.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Result</h1>
+        <div class="result-message">
+            <!-- Display the result message passed from Flask -->
+            {% if message %}
+                <p>{{ message }}</p>
+            {% else %}
+                <p>Unknown result. Please try registering again.</p>
+            {% endif %}
+        </div>
+        <div class="links">
+            <!-- Links to navigate to other pages -->
+            <a href="/register">Try Again</a>
+            <a href="/">Home</a>
+        </div>
+    </div>
+</body>
+</html>

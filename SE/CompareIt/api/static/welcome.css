@@ -1,0 +1,378 @@
+/* modified original template by : https://blog.csdn.net/bhegi_seg/article/details/123394504 */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+}
+html {
+    height: 100%;
+}
+
+ul{
+  float: right;
+  list-style-type: none;
+  margin: 15px;
+}
+ul li{
+  display: inline-block;
+}
+
+ul li a{
+  text-decoration: none;
+  color: #fff;
+  padding: 5px 20px;
+  border: 1px solid transparent;
+  transition: .6s ease;
+  border-radius: 20px;
+}
+
+ul li a:hover{
+  background-color: #fff;
+  color: #000;
+}
+ul li.active a{
+  background-color: #fff;
+  color: #000;
+}
+.compare-it-header {
+  text-align: center;
+}
+
+.compare-it-header h1 {
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Impact', sans-serif;
+  text-shadow: 
+    -2px -2px 0 black,  
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
+  display: inline-block;
+}
+.compare-it-header span {
+  font-family: 'Impact', sans-serif;
+  color: lightpink;
+}
+body {
+    height: 100%;
+}
+.container {
+    /* background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?cs=srgb&dl=pexels-george-dolgikh-1303098.jpg&fm=jpg); */
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('gingerbread.png');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
+
+.login-wrapper {
+    background-color: #fff;
+    width: 358px;
+    height: 588px;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-wrapper2 {
+  background-color: #fff;
+  width: 358px;
+  height: 758px;
+  border-radius: 15px;
+  padding: 0 50px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.info-wrapper {
+    background-color: #fff;
+    width: 900px;
+    height: 700px;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-wrapper {
+  position: relative;
+  top: -60px;
+} 
+
+.header {
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 200px; 
+    
+}
+.input-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 0;
+    padding: 10px;
+    border-bottom: 1px solid rgb(128, 125, 125);
+    font-size: 15px;
+    outline: none;
+}
+.input-item:placeholder {
+    text-transform: uppercase;
+}
+.btn {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: 40px;
+    background-image: linear-gradient(to right, crimson, lightpink);
+    color: #fff;
+}
+.msg {
+    text-align: center;
+    line-height: 88px;
+}
+a {
+    text-decoration-line: none;
+    color: crimson;
+}
+
+.table-container {
+    max-height: 500px; /* 设置表格容器的最大高度 */
+    max-width: 900px; /* 设置表格容器的最大宽度 */
+    overflow-x: auto; /* 设置X轴方向上出现滚动条 */
+    overflow-y: auto; /* 设置Y轴方向上出现滚动条 */
+}
+
+table {
+    width: 100%; /* 表格宽度占据父容器的100% */
+    border-collapse: collapse; /* 合并表格边框 */
+}
+
+th, td {
+    border: 1px solid #ccc; /* 设置单元格边框样式 */
+    padding: 10px; /* 设置单元格内边距 */
+    text-align: left; /* 设置文本左对齐 */
+}
+
+.light {
+    position: relative;
+    padding: 25px 30px;
+    color: crimson;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .light:hover {
+    background-color: lightpink;
+    color: #050801;
+    box-shadow: 0 0 5px lightpink,
+                0 0 25px lightpink,
+                0 0 50px lightpink,
+                0 0 200px lightpink;
+  }
+  .light div {
+    position: absolute;
+  }
+  .light div:nth-child(1){
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(to right,transparent,lightpink);
+    animation: animate1 1s linear infinite;
+  }
+  .light div:nth-child(2){
+    width: 2px;
+    height: 100%;
+    top: -100%;
+    right: 0;
+    background: linear-gradient(to bottom,transparent,lightpink);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+  }
+  .light div:nth-child(3){
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    right: -100%;
+    background: linear-gradient(to left,transparent,lightpink);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.5s;
+  }
+  .light div:nth-child(4){
+    width: 2px;
+    height: 100%;
+    bottom: -100%;
+    left: 0;
+    background: linear-gradient(to top,transparent,lightpink);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+  }
+  .scrolling-text {
+    border: 5px solid crimson; /* 添加黑色边框 */
+    background-color: white;
+    padding: 10px; 
+    color: crimson;
+    font-size: 35px;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: scrollText 20s linear infinite; /* 10s 是滚动的持续时间，可以根据需要调整 */
+}
+/* 关键帧动画 */
+@keyframes scrollText {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(450%);
+    }
+}
+  @keyframes animate1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  @keyframes animate2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  @keyframes animate3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  @keyframes animate4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    top: 50%; /* 50% from the top */
+    left: 50%; /* Centered horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    width: 60%; /* Modal width */
+    max-width: 400px; /* Maximum width */
+    background-color: white; /* Background color */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Shadow for a bit of depth */
+    z-index: 10; /* Ensure it's on top */
+    border-radius: 5px; /* Rounded corners */
+  }
+
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body {
+  /* font-family: "Trebuchet MS", Tahoma, sans-serif; */
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+header, footer {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  /* padding: 1.5em 0; */
+}
+
+header h1, footer p {
+  font-size: 1.5em;
+}
+
+section {
+  margin: 20px;
+}
+
+#user-info {
+  display: flex;
+  flex-direction: column;   
+  align-items: center; 
+}
+
+#user-details {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 28px;
+  color: #343a40;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.info-box {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 48%;
+  box-sizing: border-box;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.content {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #495057;
+}
+.title{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+.title h1{
+  color: #fff;
+  font-size: 70px;
+  /* font-family: Century Gothic; */
+}
